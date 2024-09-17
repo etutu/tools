@@ -45,10 +45,10 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"></label>
                         <div class="col-sm-6" v-if="selected==='1'">
-                            <button type="submit" class="btn btn-primary" @click="collectEth()">执行1</button>
+                            <button type="submit" class="btn btn-primary" @click="collectEth()">执行</button>
                         </div>
                         <div class="col-sm-6" v-if="selected==='2'">
-                            <button type="submit" class="btn btn-primary" @click="collectToken()">执行2</button>
+                            <button type="submit" class="btn btn-primary" @click="collectToken()">执行</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,7 +78,7 @@ export default {
             selected: '1',
             styleTag: 'display: none',
             tokenAddress: '',
-            receiveAddress: '0x9Ba410DE481CAeB52f872cEc46fb7eb48E46bD3A',
+            receiveAddress: '',
             collection: '',
             collectionArray: [],
             addressArray: [],
