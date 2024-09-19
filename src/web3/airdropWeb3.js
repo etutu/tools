@@ -46,6 +46,17 @@ const web3 = {
 		return this.web3.utils.fromWei(value, 'ether')
 	},
 
+	getTokenDecimals(tokenAddress) {
+		let that = this;
+		this.web3.eth.call({
+			to: tokenAddress,
+			data: "0x313ce567"
+		}).then(decimals => {
+			// var decimals = "0x"+res.substring(res.length, 64)
+			console.log(that.web3.utils.hexToNumber(decimals))
+		})
+	},
+
 	getToolsFee() {
 		let that = this;
 		this.toolsInstance.methods.getToolsFee().call().then(function(toolsFee) {
@@ -118,14 +129,17 @@ const web3 = {
 
 	//批量发送erc20代币
 	sendErc20(tokenAddress, addressArray, amountsArray) {
+		let addressArrayNew = [];
+		let amountsArrayNew = [];
 		for(let i = 0; i < amountsArray.length; i++) {
-			amountsArray[i] = this.etherToWei(amountsArray[i])
+			addressArrayNew.push(addressArray[i]);
+			amountsArrayNew.push(amountsArray[i]);
 		}
 		return new Promise((resolve, reject) => {
-            this.toolsInstance.methods.sendErc20(tokenAddress, addressArray, amountsArray)
+            this.toolsInstance.methods.sendErc20(tokenAddress, addressArrayNew, amountsArrayNew)
 			.send({
 				from: this.account,
-				value: this.etherToWei(new Decimal(this.toolsFee).times(addressArray.length).toString())
+				value: this.etherToWei(new Decimal(this.toolsFee).times(addressArray.length + 1).toString())
 			})
 			.on('receipt', function(receipt){
 				// console.log({receipt:receipt})

@@ -68,7 +68,7 @@ export default {
                 //先执行初始化web3
                 Airdrop.initWeb3().then(() => {
                     // 等待web3初始化完成后执行web3方法
-                    // this.getAddressData()
+                    Airdrop.getTokenDecimals()
                 });
             });
         },
@@ -83,6 +83,7 @@ export default {
 
         //加载代币实例
         loadTokenInstance() {
+            Airdrop.getTokenDecimals(this.tokenAddress);
             this.getTokenAllowanceAmount();
         },
 
