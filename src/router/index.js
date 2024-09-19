@@ -3,8 +3,9 @@
 import VueRouter from 'vue-router'
 import AirdropPage from '../pages/Airdrop'
 import CollectPage from '../pages/Collect'
-import CreatePage from '../pages/Create'
+import CreateToken from '../pages/CreateToken'
 import TransformPage from '../pages/Transform'
+import CreateWallet from '../pages/CreateWallet'
 //创建并暴露一个路由器
 export default new VueRouter({
     routes: [
@@ -17,12 +18,16 @@ export default new VueRouter({
             component: CollectPage,
         }
         ,{
-            path: '/create', // 创建代币
-            component: CreatePage,
+            path: '/create_token', // 创建代币
+            component: CreateToken,
         }
         ,{
             path: '/transform', // 单位转换
             component: TransformPage,
+        }
+        ,{
+            path: '/create_wallet', // 创建钱包
+            component: CreateWallet,
         }
     ]
 })

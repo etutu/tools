@@ -1,5 +1,5 @@
 import Web3 from 'web3'
-import create from '../json/create.json'
+import createToken from '../json/createToken.json'
 
 const web3 = {
     async initWeb3() {
@@ -21,7 +21,7 @@ const web3 = {
 			const accounts = await this.web3.eth.requestAccounts();
 			this.account = accounts[0]
 			console.log(accounts[0])
-			this.createInstance = new this.web3.eth.Contract(create.contractABI, create.contractAddress);
+			this.createInstance = new this.web3.eth.Contract(createToken.contractABI, createToken.contractAddress);
 			window.ethereum.on('accountsChanged', function (accounts) {
 				this.account = accounts[0]
 				console.log("当前账户发生更改:" + accounts)

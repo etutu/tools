@@ -1,5 +1,5 @@
 import Web3 from 'web3'
-import create from '../json/create.json'
+import create from '../json/createToken.json'
 
 const web3 = {
     async initWeb3() {

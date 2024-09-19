@@ -58,9 +58,9 @@
 </template>
 
 <script>
-import Create from '../web3/createWeb3'
+import CreateToken from '../web3/createTokenWeb3'
 export default {
-    name: 'CreatePage',
+    name: 'CreateToken',
     data() {
         return {
             name: '',
@@ -82,7 +82,7 @@ export default {
         initWeb3() {
             this.$nextTick(() => {
                 //先执行初始化web3
-                Create.initWeb3().then(() => {
+                CreateToken.initWeb3().then(() => {
                     // 等待web3初始化完成后执行web3方法
                     this.getCreateFee()
                 });
@@ -91,7 +91,7 @@ export default {
 
         getCreateFee() {
             let that = this
-            Create.getCreateFee().then(function (createFee) {
+            CreateToken.getCreateFee().then(function (createFee) {
                 that.createFee = createFee
             })
         },
@@ -99,7 +99,7 @@ export default {
         calculateAddr() {
             let that = this
             if(this.name !== '' && this.symbol !== '' && this.decimals > 0 && this.totalSupply > 0) {
-                Create.calculateAddr(this.name, this.symbol, this.decimals, this.totalSupply).then(function (address) {
+                CreateToken.calculateAddr(this.name, this.symbol, this.decimals, this.totalSupply).then(function (address) {
                 that.isShowAddress = 1;
                 that.estimateAddress = address
             })
@@ -108,7 +108,7 @@ export default {
 
         createToken() {
             let that = this
-            Create.createToken(this.name, this.symbol, this.decimals, this.totalSupply, this.createFee).then(function(receipt){
+            CreateToken.createToken(this.name, this.symbol, this.decimals, this.totalSupply, this.createFee).then(function(receipt){
                 console.log('receipt:', receipt)
                 that.isShowAddress = 2;
                 alert('创建成功')
