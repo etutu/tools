@@ -6,6 +6,9 @@ import CollectPage from '../pages/Collect'
 import CreateToken from '../pages/CreateToken'
 import TransformPage from '../pages/Transform'
 import CreateWallet from '../pages/CreateWallet'
+import TokenLock from '../pages/TokenLock'
+import LockedToken from '../pages/LockedToken'
+import LockedLp from '../pages/LockedLp'
 //创建并暴露一个路由器
 export default new VueRouter({
     routes: [
@@ -28,6 +31,18 @@ export default new VueRouter({
         ,{
             path: '/create_wallet', // 创建钱包
             component: CreateWallet,
+        }
+        ,{
+            path: '/token_lock', // 代币锁定
+            component: TokenLock,
+        }
+        ,{
+            path: '/locked_token', // 我的锁-普通代币
+            component: LockedToken,
+        }
+        ,{
+            path: '/locked_lp', // 我的锁-LP代币
+            component: LockedLp,
         }
     ]
 })

@@ -15,7 +15,7 @@
                     <div class="form-group" :style="styleTag">
                         <label class="col-sm-2 control-label">代币地址：</label>
                         <div class="col-sm-6">
-                            <input class="form-control" v-model="tokenAddress" placeholder="请输入代币地址" @change="getTokenAllowanceAmount()">
+                            <input class="form-control" v-model="tokenAddress" placeholder="请输入代币地址" @input="getTokenAllowanceAmount()">
                         </div>
                     </div>
                     <div class="form-group">
