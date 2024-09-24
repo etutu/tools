@@ -9,6 +9,8 @@ import CreateWallet from '../pages/CreateWallet'
 import TokenLock from '../pages/TokenLock'
 import LockedToken from '../pages/LockedToken'
 import LockedLp from '../pages/LockedLp'
+import BatchCheckBalance from '../pages/BatchCheckBalance'
+
 //创建并暴露一个路由器
 export default new VueRouter({
     routes: [
@@ -43,6 +45,10 @@ export default new VueRouter({
         ,{
             path: '/locked_lp', // 我的锁-LP代币
             component: LockedLp,
+        }
+        ,{
+            path: '/batch_check_balance', // 批量检查钱包余额
+            component: BatchCheckBalance,
         }
     ]
 })

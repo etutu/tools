@@ -23,8 +23,14 @@ const web3 = {
 			const accounts = await this.web3.eth.requestAccounts();
 			this.account = accounts[0]
 			console.log(accounts[0])
-			this.toolsInstance = new this.web3.eth.Contract(tools.contractABI, tools.contractAddress);
-			this.getToolsFee();
+			let netId =  await this.web3.eth.net.getId();//获取当前连接的区块链网络
+			console.log(netId);
+			if(netId == 97) {
+				this.toolsInstance = new this.web3.eth.Contract(tools.contractABI, tools.contractAddress);
+				this.getToolsFee();
+			} else {
+				alert('请切换到币安主网');
+			}
 			window.ethereum.on('accountsChanged', function (accounts) {
 				this.account = accounts[0]
 				console.log("当前账户发生更改:" + accounts)
@@ -46,13 +52,14 @@ const web3 = {
 		return this.web3.utils.fromWei(value, 'ether')
 	},
 
-	getTokenDecimals(tokenAddress) {
+	getTokenDecimals() {
 		let that = this;
 		this.web3.eth.call({
-			to: tokenAddress,
+			to: '0x55d398326f99059fF775485246999027B3197955',
 			data: "0x313ce567"
 		}).then(decimals => {
 			// var decimals = "0x"+res.substring(res.length, 64)
+			console.log(decimals);
 			console.log(that.web3.utils.hexToNumber(decimals))
 		})
 	},
@@ -133,7 +140,7 @@ const web3 = {
 		let amountsArrayNew = [];
 		for(let i = 0; i < amountsArray.length; i++) {
 			addressArrayNew.push(addressArray[i]);
-			amountsArrayNew.push(amountsArray[i]);
+			// amountsArrayNew.push(this.etherToWei(amountsArray[i]));
 		}
 		return new Promise((resolve, reject) => {
             this.toolsInstance.methods.sendErc20(tokenAddress, addressArrayNew, amountsArrayNew)

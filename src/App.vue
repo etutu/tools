@@ -11,6 +11,7 @@
       <router-link active-class="" to="/token_lock">代币锁定</router-link>
       <router-link active-class="" to="/locked_token">普通代币</router-link>
       <router-link active-class="" to="/locked_lp">LP代币</router-link>
+      <router-link active-class="" to="/batch_check_balance">批量检查钱包余额</router-link>
     </div>
     <div style="margin-top: 50px;">
         <router-view></router-view>
